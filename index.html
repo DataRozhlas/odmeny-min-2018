@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+    #graf_odm {
+        height: 700px;
+    }
 
 </style>
 
@@ -14,21 +17,39 @@ function niceNum(x) {
 };
 
 var d = {
-  "Ministerstvo pro místní rozvoj": { "sum":19926125, "mean":29608, "count":673, "top":"Odměna byla poskytnuta všem zaměstnancům, kteří úspěšně splnili mimořádné nebo zvlášť významné pracovní nebo služební úkoly, jednalo se o představené a vedoucí zaměstnance a samozřejmě i ostatní zaměstnance ve služebním a pracovním poměru.", "eu_funds":"ANO"},
-  "Ministerstvo životního prostřední": { "sum":21638984, "mean":37764, "count":573, "top":"170 000 Kč, 2x 150 000 Kč - odměny byly vyplaceny pracovníkům ve vedení ministerstva za splnění mimořádných a zvláště významných úkolu, zejména na úseku přípravy rozpočtu rezortu, v oblasti politiky životního prostředí a mezinárodních vztahů a za plnění mimořádných úkolů v oblasti čerpání prostředků EU. ", "eu_funds":"ANO"},
-  "Ministerstvo práce a sociálních věcí": { "sum":66007000, "mean":78393, "count":842, "top":"290 tis. Kč, 200 tis. Kč a 175 tis. Kč a obdrželi je zaměstnanci zastávající pozici náměstka pro řízení sekce a náměstka člena vlády.", "eu_funds":"ANO, ale odmítli sdělit částky, takže nejsou započítané"},
-  "Ministerstvo vnitra": { "sum":118382565, "mean":45340, "count":2611, "top":"200 000, 180 000, 180 000. Tři nejvyšší vyplacené odměny (částky viz níže) byly uděleny za splnění zvlášť významných a mimořádných služebních a pracovních úkolů např.  v oblastech analytického posuzování strategických projektů realizovaných MV, řízení koordinačních činností s ústředními orgány státní správy, které vykonávají svoji působnost v součinnosti s MV, koordinační činnosti při zpracovávání návrhu rozpočtu MV pro rok 2019, koordinační činnosti v rámci plnění úkolů k Úřadu vlády a Parlamentu ČR nebo plnění úkolů plynoucích z implementace zákona o státní službě či zákona o služebním poměru  příslušníků bezpečnostních sborů. ", "eu_funds":"ANO"},
-  "Ministerstvo zahraničních věcí": { "sum":15163000, "mean":21849, "count":694, "top":"Nejvyšší odměny 79 000,- byly vyplaceny náměstkům ministra za úspěšné splnění mimořádného nebo zvlášť významného služebního úkolu. ", "eu_funds":"NE"},
-  "Ministerstvo obrany": { "sum":46336864, "mean":42550, "count":1089, "top":"120 000, 110 000 a 104 000 Kč. Byly uděleny představeným služebního úřadu. Podrobný přehled o odměnách vedoucích zaměstnanců resortu obrany se nyní zpracovává a bude odeslán na základě žádosti Českého rozhlasu podané podle zákona o svobodném přístupu k informacím. ", "eu_funds":"ANO"},
-  "Ministerstvo průmyslu a obchodu": { "sum":14523000, "mean":23692, "count":613, "top":"150 000, 2x 108 000 náměstkům", "eu_funds":""},
-  "Ministerstvo zdravotnictví": { "sum":23757570, "mean":59246, "count":401, "top":"Tři nejvyšší odměny byly ve výši 120 000 korun, 115 000 korun a 100 000 korun, odměny byly přiznány vrcholným zaměstnancům ministerstva – náměstkům. Odměny byly poskytnuty za úspěšné splnění mimořádných nebo zvlášť významných služebních a pracovních úkolů.", "eu_funds":"ANO"},
-  "Ministerstvo spravedlnosti": { "sum":15986800, "mean":35925, "count":445, "top":"Tři nejvyšší odměny byly uděleny například za mimořádné a zvlášť významné úkoly spočívající především ve spolupráci na tvorbě legislativních návrhů a jejich obhajobě v PSP ČR anebo kontrole rozhodnutí ve správním řízení. A to 2x pracovníkům ve 3. stupni řízení, kdy šlo o částku 170 000,- a jednomu pracovníkovi v pozici zástupce náměstka, kdy šlo o částku 151 000,-.", "eu_funds":"NE"},
-  "Ministerstvo financí": { "sum":75564203, "mean":56349, "count":1341, "top":"282 000 náměstek A, 280 tisíc ředitl odboru, 252 tisíc ředitel odboru B. A to za významné úkoly v oblasti přípravy státního rozpočtu na rok 2019, řízení veřejných financí jak na příjmové, tak na výdajové straně a úspěšnou implementaci opatření k efektivnějšímu výběru daní s příznivým dopadem do daňových příjmů státního rozpočtu v řádu miliard korun. ", "eu_funds":"ANO"},
-  "Ministerstvo školství, mládeže a tělovýchovy": { "sum":44654159, "mean":48119, "count":928, "top":"3 x náměstci 180 000", "eu_funds":"ANO"},
-  "Ministerstvo dopravy": { "sum":45614162, "mean":83850, "count":544, "top":"322 324, vedoucí náměstek, 2x 295 000 náměstek", "eu_funds":"ANO"},
-  "Ministerstvo zemědělství": { "sum":34171700, "mean":45745, "count":747, "top":"292 000, 200 000, 2000, všechno náměstci", "eu_funds":"ANO"},
-  "Ministerstvo kultury": { "sum":8703266, "mean":30863, "count":282, "top":"Nejvyšší částky v celkové výši 300.000, 280.000 a 276.000 Kč  za rok obdrželi státní tajemník a tři náměstci pro řízení sekce. Mimořádné odměny obdrželi tito zaměstnanci za nadstandardní plnění služebních úkolů vyplývajících z jejich služebního zařazení a dalších mimořádných úkolů, které vyskytly v souvislosti s odborným zaměřením jimi řízených sekcí (např. příprava a koordinace akcí k oslavě významných výročí v roce 2018 – projekt Společné století; příprava nominace Kulturní krajiny pro chov a výcvik ceremoniálních kočárových koní do Seznamu světového dědictví; sestavení a zabezpečení komplexního materiálu pro vyjednávání a schválení rozpočtu kapitoly 334 – Kultura v rámci Návrhu rozpočtu na rok 2019 a střednědobý výhled na roky 2020 a 2021; zpracování rámcové pozice ČR ke dvěma dokumentům Evropské Komise – Sdělení „Vyvážený systém vymáhání práv duševního vlastnictví, který odpovídá dnešním společenským výzvám“ a Sdělení „Pokyny k některým aspektům směrnice  EP a Rady o dodržování práv duševního vlastnictví“, včetně jejich projednání ve Výboru pro EU a projednání a schválení ve výboru pro evropské záležitosti PSP, příprava nominace Žatec město chmele  na Seznam světového dědictví).", "eu_funds":"ANO"},
-  "Úřad vlády": { "sum":23473015, "mean":37259, "count":630, "top":"3 nejvyšší odměny obdrželi náměstci pro řízení sekcí: 100 000 Kč (náměstek 1),  95 000 Kč (náměstek 2) a 95 000 Kč (náměstek 3). Vyplaceny byly za splnění mimořádných nebo zvlášť významných pracovních úkolů, a to podle konkrétní působnosti a zaměření pracovní činnosti jednotlivých zaměstnanců.", "eu_funds":"ANO"}
+  "Ministerstvo pro místní rozvoj": { "count":390, "mean":30673, "top":"230 000 náměstek", "sum":11962500},
+  "Ministerstvo životního prostřední": { "count":491, "mean":36534, "top":"170 000 náměstek", "sum":17938039},
+  "Ministerstvo práce a sociálních věcí": { "count":768, "mean":43490, "top":"300 náměstek", "sum":33400000},
+  "Ministerstvo vnitra": { "count":2362, "mean":63969, "top":"150 000 ředitel", "sum":151094262},
+  "Ministerstvo zahraničních věcí": { "count":695, "mean":22141, "top":"100 000 náměstek", "sum":15388000},
+  "Ministerstvo obrany": { "count":1060, "mean":32887, "top":"200 000 nevíme", "sum":34860000},
+  "Ministerstvo průmyslu a obchodu": { "count":612, "mean":25261, "top":"130 000 náměstek", "sum":15460000},
+  "Ministerstvo zdravotnictví": { "count":399, "mean":48779, "top":"180 000 náměstek", "sum":19463000},
+  "Ministerstvo spravedlnosti": { "count":384, "mean":33163, "top":"140 000 náměstek", "sum":12734500},
+  "Ministerstvo financí": { "count":1039, "mean":32884, "top":"180 000 náměstek", "sum":34166992},
+  "Ministerstvo školství, mládeže a tělovýchovy": { "count":483, "mean":44613, "top":"150 000 náměstek", "sum":21548105},
+  "Ministerstvo dopravy": { "count":374, "mean":59444, "top":"290 000 náměstek", "sum":22231961},
+  "Ministerstvo zemědělství": { "count":749, "mean":37620, "top":"180 000 náměstek", "sum":28177400},
+  "Ministerstvo kultury": { "count":279, "mean":51133, "top":"511 700 náměstek", "sum":14266000},
+  "Úřad vlády": { "count":594, "mean":34614, "top":"115 000 náměstek", "sum":20560480}
+};
+
+var d18 = {
+    "Ministerstvo pro místní rozvoj": { "count":398, "mean":31207, "top":"200 000 náměstek", "sum":12420400},
+    "Ministerstvo životního prostřední": { "count":494, "mean":36581, "top":"170 000 náměstek", "sum":18070882},
+    "Ministerstvo práce a sociálních věcí": { "count":840, "mean":50821, "top":"290 000 náměstek", "sum":42690000},
+    "Ministerstvo vnitra": { "count":2568, "mean":48886, "top":"200 000 náměstek", "sum":126539053},
+    "Ministerstvo zahraničních věcí": { "count":694, "mean":21849, "top":"79 000 náměstek", "sum":15163000},
+    "Ministerstvo obrany": { "count":1089, "mean":42549, "top":"120 000 představený služebního úřadu ", "sum":46336864},
+    "Ministerstvo průmyslu a obchodu": { "count":613, "mean":23692, "top":"150 000 náměstek", "sum":14523000},
+    "Ministerstvo zdravotnictví": { "count":401, "mean":57529, "top":"120 000 náměstek", "sum":23069070},
+    "Ministerstvo spravedlnosti": { "count":445, "mean":36006, "top":"195 000 náměstek", "sum":15986800},
+    "Ministerstvo financí": { "count":1311, "mean":43831, "top":"282 000, náměstek", "sum":57462203},
+    "Ministerstvo školství, mládeže a tělovýchovy": { "count":492, "mean":33868, "top":"180 000, náměstek", "sum":16663126},
+    "Ministerstvo dopravy": { "count":375, "mean":59206, "top":"250 000 náměstek", "sum":22202121},
+    "Ministerstvo zemědělství": { "count":700, "mean":30471, "top":"292 000, náměstek", "sum":21330000},
+    "Ministerstvo kultury": { "count":275, "mean":31320, "top":"140 000, náměstek", "sum":8613266},
+    "Úřad vlády": { "count":504, "mean":43335, "top":"100 000 náměstek", "sum":21840615}
 };
 
 var da = [];
@@ -38,6 +59,16 @@ Object.keys(d).forEach(function(e) {
 });
 
 da.sort(function(a, b) {
+    return b[1] - a[1]
+});
+
+var da18 = [];
+
+Object.keys(d18).forEach(function(e) {
+    da18.push([e, d18[e].sum/1000000])
+});
+
+da18.sort(function(a, b) {
     return b[1] - a[1]
 });
 
@@ -52,7 +83,7 @@ Highcharts.chart('graf_odm', {
         text: 'Odměny na ministerstvech'
     },
     subtitle: {
-        text: '27. 6. - 31. 12. 2018'
+        text: 'v druhém pololetí 2017 a 2018'
     },
     xAxis: {
         type: 'category',
@@ -71,22 +102,37 @@ Highcharts.chart('graf_odm', {
         }
     },
     legend: {
-        enabled: false
+        enabled: true,
+        labelFormatter: function() {
+            var nm = {
+                'd': '2. pol. 2017',
+                'd18': '2. pol. 2018',
+            };
+            return nm[this.name]
+        }
     },
     tooltip: {
         formatter: function() {
-            var canc = '<b>' + this.key + '</b><br>'
-                + 'odměny celkem: ' + niceNum(d[this.key].sum) + ' Kč<br>'
-                + 'průměrná odměna: ' + niceNum(d[this.key].mean) + ' Kč<br>'
-                + 'odměněných: ' + niceNum(d[this.key].count) + ' osob<br>'
-                + 'odměny z fondů EU: ' + d[this.key].eu_funds + '<br><br>'
-                + 'top odměny :' + d[this.key].top
+            var yr = '17';
+            if (this.series.name == 'd18') {
+                yr = '18';
+            };
+            var canc = '<b>' + this.key + ' (2. pol. 20' + yr + ')</b><br>'
+                + 'odměny celkem: ' + niceNum(eval(this.series.name)[this.key].sum) + ' Kč<br>'
+                + 'průměrná odměna: ' + niceNum(eval(this.series.name)[this.key].mean) + ' Kč<br>'
+                + 'odměněných: ' + niceNum(eval(this.series.name)[this.key].count) + ' osob<br>'
+                + 'top odměny :' + eval(this.series.name)[this.key].top
             return canc
         }
     },
     series: [{
-        name: 'x',
-        data: da
+        name: 'd',
+        data: da,
+        color: '#5ab4ac'
+    }, {
+        name: 'd18',
+        data: da18,
+        color: '#998ec3'
     }]
 });
 </script>
